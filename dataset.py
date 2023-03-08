@@ -126,6 +126,14 @@ class Dataset(torch.utils.data.Dataset):
                     img = img[h_start:h_start + side, w_start:w_start + side, ...]
         # img = scipy.misc.imresize(img, [self.target_size, self.target_size])
         img = np.array(Image.fromarray(img).resize(size=(self.target_size, self.target_size)))
+        if img.shape[2] == 4:  # check if image has 4 channels
+            img = img[:, :, :3]
+        if image.ndim == 2:
+            img = img[:, :, np.newaxis] # HW => HWC
+
+        # for grayscale image
+        if img.shape[2] == 1:
+            img = np.repeat(img 3, axis=2)
         return img
 
     def to_tensor(self, img):
