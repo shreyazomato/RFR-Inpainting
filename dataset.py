@@ -133,7 +133,7 @@ class Dataset(torch.utils.data.Dataset):
 
         # for grayscale image
         if img.shape[2] == 1:
-            img = np.repeat(img 3, axis=2)
+            img = np.repeat(img, 3, axis=2)
         return img
 
     def to_tensor(self, img):
