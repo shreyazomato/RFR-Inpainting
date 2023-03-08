@@ -128,7 +128,7 @@ class Dataset(torch.utils.data.Dataset):
         img = np.array(Image.fromarray(img).resize(size=(self.target_size, self.target_size)))
         if img.shape[2] == 4:  # check if image has 4 channels
             img = img[:, :, :3]
-        if image.ndim == 2:
+        if img.ndim == 2:
             img = img[:, :, np.newaxis] # HW => HWC
 
         # for grayscale image
